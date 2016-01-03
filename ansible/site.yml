@@ -14,13 +14,13 @@
       - { name: mysql, package: php5-mysql }
       - { name: apc, package: php-apc }
       - { name: gd, package: php5-gd }
-    php_extensions:
     php_ppa: php5
   roles:
     - init
     - php5-fpm
     - php5-cli
     - php5-common
+    - nginx
     - composer
     - phpunit
     - mysql

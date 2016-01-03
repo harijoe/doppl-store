@@ -1,0 +1,2 @@
+[hosts]
+54.93.56.73 ansible_connection=ssh ansible_ssh_user=ubuntu

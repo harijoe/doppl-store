@@ -6,11 +6,10 @@ set :stages, %w(prod)
 set :application, 'doppl-store'
 set :deploy_to, "/var/www/#{fetch(:application)}"
 set :repo_url, 'git@github.com:harijoe/doppl-store.git'
-set :repo_tree, 'doppl-store'
 
-set :log_path, "var/logs"
-set :cache_path, "var/cache"
-set :symfony_console_path, 'bin/console'
+set :log_path, "app/logs"
+set :cache_path, "app/cache"
+set :symfony_console_path, 'app/console'
 set :linked_files, fetch(:linked_files, []).push('app/config/parameters.yml')
 set :linked_dirs, [fetch(:log_path), "var/sessions", "web/uploads"]
 

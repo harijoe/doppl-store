@@ -7,26 +7,10 @@ services:
 
 # Examples of API resource mapping, learn more at
 # https://github.com/dunglas/DunglasApiBundle
-    resource.book:
-        parent:    "api.resource"
-        arguments: [ "AppBundle\\Entity\\Book" ]
-        tags:      [ { name: "api.resource" } ]
-
     resource.person:
         parent:    "api.resource"
-        arguments: [ "AppBundle\\Entity\\Person" ]
+        arguments: [ "AppBundle\\Entity\\WeatherMeasure" ]
         tags:      [ { name: "api.resource" } ]
-
-    resource.organization:
-        parent:    "api.resource"
-        arguments: [ "AppBundle\\Entity\\Organization" ]
-        calls:
-            -      [ "initFilters", [ [ "@resource.organization.filter" ] ] ]
-        tags:      [ { name: "api.resource" } ]
-
-    resource.organization.filter:
-        parent:    "api.doctrine.orm.search_filter"
-        arguments: [ { "name": "exact", "url": "partial" } ]
 
 # A typical service
 #    service_name:

@@ -7,11 +7,18 @@ services:
 
 # Examples of API resource mapping, learn more at
 # https://github.com/dunglas/DunglasApiBundle
-    resource.person:
+    resource.github_stars_measure:
+        parent:    "api.resource"
+        arguments: [ "AppBundle\\Entity\\GithubStarsMeasure" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.watched_repository:
+        parent:    "api.resource"
+        arguments: [ "AppBundle\\Entity\\WatchedRepository" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.weather_measure:
         parent:    "api.resource"
         arguments: [ "AppBundle\\Entity\\WeatherMeasure" ]
         tags:      [ { name: "api.resource" } ]
-
 # A typical service
 #    service_name:
 #        class: AppBundle\Directory\ClassName

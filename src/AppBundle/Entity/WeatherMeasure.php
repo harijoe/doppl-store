@@ -22,12 +22,12 @@ class WeatherMeasure
      */
     private $id;
     /**
-     * @var \DateTime Date of birth.
+     * @var \DateTime Date of measure.
      *
      * @ORM\Column(type="datetime", nullable=true)
      * @Assert\DateTime
      */
-    private $datetimeCreate;
+    private $measureDatetime;
     /**
      * @var int temperature
      *
@@ -52,7 +52,7 @@ class WeatherMeasure
 
     public function __construct()
     {
-        $this->datetimeCreate = new \DateTime();
+        $this->measureDatetime = new \DateTime();
     }
 
     /**
@@ -74,17 +74,17 @@ class WeatherMeasure
     /**
      * @return \DateTime
      */
-    public function getDatetimeCreate()
+    public function getMeasureDatetime()
     {
-        return $this->datetimeCreate;
+        return $this->measureDatetime;
     }
 
     /**
-     * @param \DateTime $datetimeCreate
+     * @param \DateTime $measureDatetime
      */
-    public function setDatetimeCreate($datetimeCreate)
+    public function setMeasureDatetime($measureDatetime)
     {
-        $this->datetimeCreate = $datetimeCreate;
+        $this->measureDatetime = $measureDatetime;
     }
 
     /**

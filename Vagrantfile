@@ -1,4 +1,4 @@
-$HOSTNAME = "babylone-allinone.dev"
+$HOSTNAME = "doppl-store.dev"
 $BOX = "ubuntu/trusty64"
 $IP = "192.12.12.12"
 $MEMORY = ENV.has_key?('VM_MEMORY') ? ENV['VM_MEMORY'] : "1024"

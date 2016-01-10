@@ -15,3 +15,6 @@ parameters:
     api_name: 'Doppl Store'
     api_description: 'Doppl data store'
     secret: ThisTokenIsNotSoSecretChangeIt
+    host: 'http://localhost'
+    github.username: 'harijoe'
+    github.password: '67139852961d54bbed69dceaeb010cf9a845b0e2'

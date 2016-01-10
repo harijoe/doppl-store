@@ -21,6 +21,7 @@ class GithubStarsMeasure
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var string
      *
@@ -28,13 +29,15 @@ class GithubStarsMeasure
      * @Assert\Type(type="string")
      */
     private $repository;
+
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(type="integer")
-     * @Assert\Type(type="integer")
+     * @ORM\Column(type="text")
+     * @Assert\Type(type="string")
      */
-    private $stars;
+    private $content;
+
     /**
      * @var \DateTime Date of measure.
      *
@@ -76,19 +79,19 @@ class GithubStarsMeasure
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getStars()
+    public function getContent()
     {
-        return $this->stars;
+        return $this->content;
     }
 
     /**
-     * @param int $stars
+     * @param string $content
      */
-    public function setStars($stars)
+    public function setContent($content)
     {
-        $this->stars = $stars;
+        $this->content = $content;
     }
 
     /**

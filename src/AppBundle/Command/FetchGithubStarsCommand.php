@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use Guzzle\Common\Exception\ExceptionCollection;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,17 +25,29 @@ class FetchGithubStarsCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $client = new Client(['base_url' => 'http://localhost']);
-//        $repositories = $client->request('GET', 'http://localhost/watched_repositories?_format=json');
-        $response = $client->get('http://localhost/watched_repositories?_format=json');
+        $host = $this->getContainer()->getParameter('host');
+        $username = $this->getContainer()->getParameter('username');
+        $password = $this->getContainer()->getParameter('password');
+        $now = new \DateTime();
+        $ISO8601 = 'Y-m-d\TH:i:sP';
+        $auth = [$username, $password];
+
+        $client = new Client();
+        $response = $client->get($host.'/watched_repositories?_format=json', ['auth'=>$auth]);
         $repositories = json_decode($response->getBody()->getContents(), true)['hydra:member'];
 
         foreach ($repositories as $repository) {
-            $response = $client->get('https://api.github.com/repos/'.$repository['name']);
-            $res = $client->get('https://api.github.com/repos/'.$repository['name']);
-            $stars = json_decode($response->getBody()->getContents(), true)['stargazers_count'];
-            var_dump($stars);
+            $response = $client->get('https://api.github.com/repos/'.$repository['name'], ['auth' => $auth]);
+            $content = json_decode($response->getBody()->getContents(), true);
+
+            $parameters = [
+                '_format' => 'json',
+                'repository' => $repository['name'],
+                'content' => json_encode($content),
+                'measureDatetime' => $now->format($ISO8601)
+            ];
+
+            $client->post($host.'/github_stars_measures', ['body' => json_encode($parameters)]);
         }
-//            'auth' => ['user', 'pass']
     }
 }

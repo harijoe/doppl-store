@@ -34,7 +34,7 @@ class WeatherMeasure
      * @ORM\Column(type="decimal", nullable=true, scale=2)
      * @Assert\Type(type="float")
      */
-    private $temparature;
+    private $temperature;
     /**
      * @var int Luminance
      *
@@ -90,17 +90,17 @@ class WeatherMeasure
     /**
      * @return int
      */
-    public function getTemparature()
+    public function getTemperature()
     {
-        return $this->temparature;
+        return $this->temperature;
     }
 
     /**
-     * @param int $temparature
+     * @param int $temperature
      */
-    public function setTemparature($temparature)
+    public function setTemperature($temperature)
     {
-        $this->temparature = $temparature;
+        $this->temperature = $temperature;
     }
 
     /**

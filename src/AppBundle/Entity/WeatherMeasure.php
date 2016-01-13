@@ -32,21 +32,18 @@ class WeatherMeasure
      * @var int temperature
      *
      * @ORM\Column(type="decimal", nullable=true, scale=2)
-     * @Assert\Type(type="float")
      */
     private $temperature;
     /**
      * @var int Luminance
      *
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Type(type="integer")
      */
     private $luminance;
     /**
      * @var int The number of pages in the book.
      *
      * @ORM\Column(type="decimal", nullable=true, scale=2)
-     * @Assert\Type(type="float")
      */
     private $humidity;
 

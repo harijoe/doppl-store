@@ -25,5 +25,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     host: 'http://localhost'
-    github.username: 'harijoe'
-    github.password: 'password'
+    username: 'harijoe'
+    password: 'password'

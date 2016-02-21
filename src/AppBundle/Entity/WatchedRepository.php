@@ -11,7 +11,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * A watched repository
  *
  * @ORM\Entity
- * @UniqueEntity("name")
  */
 class WatchedRepository
 {
@@ -26,7 +25,7 @@ class WatchedRepository
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      * @Assert\Type(type="string")
      */
     private $name;

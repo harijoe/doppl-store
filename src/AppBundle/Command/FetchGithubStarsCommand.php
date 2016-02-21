@@ -39,11 +39,12 @@ class FetchGithubStarsCommand extends ContainerAwareCommand
         foreach ($repositories as $repository) {
             $response = $client->get('https://api.github.com/repos/'.$repository['name'], ['auth' => $auth]);
             $content = json_decode($response->getBody()->getContents(), true);
+            $stars = $content['stargazers_count'];
 
             $parameters = [
                 '_format' => 'json',
                 'repository' => $repository['name'],
-                'content' => json_encode($content),
+                'stars' => $stars,
                 'measureDatetime' => $now->format($ISO8601)
             ];
 

@@ -31,12 +31,12 @@ class GithubStarsMeasure
     private $repository;
 
     /**
-     * @var string
+     * @var int
      *
      * @ORM\Column(type="text")
-     * @Assert\Type(type="string")
+     * @Assert\Type(type="integer")
      */
-    private $content;
+    private $stars;
 
     /**
      * @var \DateTime Date of measure.
@@ -79,20 +79,21 @@ class GithubStarsMeasure
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getContent()
+    public function getStars()
     {
-        return $this->content;
+        return $this->stars;
     }
 
     /**
-     * @param string $content
+     * @param int $stars
      */
-    public function setContent($content)
+    public function setStars($stars)
     {
-        $this->content = $content;
+        $this->stars = $stars;
     }
+
 
     /**
      * @return \DateTime

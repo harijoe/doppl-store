@@ -6,6 +6,7 @@ use Guzzle\Common\Exception\ExceptionCollection;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class FetchGithubStarsCommand extends ContainerAwareCommand
@@ -17,7 +18,13 @@ class FetchGithubStarsCommand extends ContainerAwareCommand
     {
         $this
             ->setName('app:fetch_github_stars_command')
-            ->setDescription('Hello PhpStorm');
+            ->setDescription('Hello PhpStorm')
+            ->addOption(
+                'test',
+                null,
+                InputOption::VALUE_NONE,
+                'If set, the task will not write anything to db'
+            );
     }
 
     /**
@@ -33,7 +40,7 @@ class FetchGithubStarsCommand extends ContainerAwareCommand
         $auth = [$username, $password];
 
         $client = new Client();
-        $response = $client->get($host.'/watched_repositories?_format=json', ['auth'=>$auth]);
+        $response = $client->get($host.'/watched_repositories?_format=json', ['auth' => $auth]);
         $repositories = json_decode($response->getBody()->getContents(), true)['hydra:member'];
 
         foreach ($repositories as $repository) {
@@ -48,7 +55,10 @@ class FetchGithubStarsCommand extends ContainerAwareCommand
                 'measureDatetime' => $now->format($ISO8601)
             ];
 
-            $client->post($host.'/github_stars_measures', ['body' => json_encode($parameters)]);
+            if (!$input->getOption('test')) {
+                $client->post($host.'/github_stars_measures', ['body' => json_encode($parameters)]);
+                $output->writeln('Added entry to db');
+            }
         }
     }
 }

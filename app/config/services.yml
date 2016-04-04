@@ -10,13 +10,21 @@ services:
     resource.github_stars_measure.search_filter:
         parent:    "api.doctrine.orm.search_filter"
         arguments: [ { id: "exact", repository: "exact" } ]
+    resource.github_stars_measure.order_filter:
+        parent:    "api.doctrine.orm.order_filter"
+        arguments: [ { measureDatetime: DESC } ]
     resource.github_stars_measure:
         parent:    "api.resource"
         arguments: [ "AppBundle\\Entity\\GithubStarsMeasure" ]
         calls:
             -      method:    "initFilters"
-                   arguments: [ [ "@resource.github_stars_measure.search_filter" ] ]
+                   arguments: [ [ "@resource.github_stars_measure.search_filter" ], [ "@resource.github_stars_measure.order_filter" ] ]
         tags:      [ { name: "api.resource" } ]
+
+
+
+
+
     resource.watched_repository:
         parent:    "api.resource"
         arguments: [ "AppBundle\\Entity\\WatchedRepository" ]

@@ -12,7 +12,7 @@ services:
         arguments: [ { id: "exact", repository: "exact" } ]
     resource.github_stars_measure.order_filter:
         parent:    "api.doctrine.orm.order_filter"
-        arguments: [ { id: ~, stars: ~, measure_date_time: DESC } ]
+        arguments: [ { id: DESC, stars: DESC, measure_date_time: DESC } ]
     resource.github_stars_measure:
         parent:    "api.resource"
         arguments: [ "AppBundle\\Entity\\GithubStarsMeasure" ]
